@@ -6,7 +6,7 @@ p.197
 # 문제 설명 :
 
 # 문제 풀이 :
-    내 풀이)
+    내 풀이) 이진탐색을 쓰면서 순차탐색도 씀... 시간복잡도 크다.
         data_list.sort(reverse=True)
         for x in range(min(data_list)~max(data_list):
             x가 들어갈 idx 찾기 (by 이진탐색 이용한 라이브러리인 bisect)
@@ -17,19 +17,52 @@ p.197
                 break
 
 # 어려웠던 점 :
-    *** [이진탐색]
-    1) [1 2 4 5]에서 4의 idx 찾기
-    이진 탐색에서 정확하게 target값을 찾는 것 => [[binary_search 구현]]
+    *** 어디에 이진탐색을 적용해야하는지 한번에 판단하기 어려웠다
 
-    2) [1 2 4 5]에서 3이 들어갈 idx 찾기
-    이진 탐색에서 target이 들어갈 idx를 찾는 것 => [[bisect 라이브러리 이용]]
+    *** [이진탐색]
+        1) [1 2 4 5]에서 4의 idx 찾기
+        이진 탐색에서 정확하게 target값을 찾는 것 => [[binary_search 구현]]
+
+        2) [1 2 4 5]에서 3이 들어갈 idx 찾기
+        이진 탐색에서 target이 들어갈 idx를 찾는 것 => [[bisect 라이브러리 이용]]
 
     *** [bisect 라이브러리]
-    from bisect import bisect_left, bisect_right
-    bisect_left(a, x)
+        from bisect import bisect_left, bisect_right
+        bisect_left(a, x)
 
-    이때 a 가 오름차순으로 정렬된 상태여야 올바른 답을 도출한다. (내림차순 정렬도 안됨)
+        이때 a 가 오름차순으로 정렬된 상태여야 올바른 답을 도출한다. (내림차순 정렬도 안됨)
 '''
+
+'''
+[정답 풀이]
+'''
+n, m = map(int, input().split()) #n은 list 길이, m은 요청한 길이
+data_list = list(map(int, input().split()))
+
+start = 0
+end = max(data_list)
+
+# 이진 탐색
+while start<=end:
+    mid = (start+end)//2
+
+    # 잘릴 떡의 양 계산
+    res = 0
+    for i in data_list:
+        if i > mid:
+            res += (i-mid)
+
+    # 결과 판단
+    if res == m:
+        print(mid)
+        break
+    elif res < m:
+        end = mid - 1
+    else:
+        start = mid + 1
+
+'''
+[내 풀이]
 
 from bisect import bisect_left, bisect_right
 
@@ -45,3 +78,4 @@ for x in range(max(data_list)-1, -1, -1):
     if res >= m: #잘린 떡의 총합이 요구한 길이와 같다면
         print(x)
         break
+'''
