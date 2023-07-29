@@ -21,6 +21,17 @@
 '''
 
 n = int(input())
-values = list(map(int,input().split()))
+data = list(map(int,input().split()))
 
-for v in values
+data.sort()
+
+res = 0
+tmp = 0
+for i in range(len(data)):
+    tmp += 1 # 현재 그룹에 data[i]를 포함시킴
+
+    if tmp >= i : # 현재 그룹 인원수가 공포도만큼이 됐다면
+        res += 1
+        tmp = 0
+
+print(res)
