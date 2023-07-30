@@ -27,12 +27,11 @@ p.303
         진입차수 중에 max 값을 더해야하는 데 어떻게 max를 찾아서 더하지?
 
     시도2) [위상정렬]
-        그래프 입력받을때 그 노드의 indegree만 계산해두는게 아니라
-        해당 노드로 들어오는 간선의 max값도 구해두면 되지 않나?
+        진입차수 0 인 노드의 간선들 제거할때마다
+        그 간선이 가리키는 노드들의 time2plus를 max값으로 갱신 (이따 더할 숫자)
 
-
-    정답풀이)
-
+        그리고 해당 노드들이 진입차수가 0이 될때
+        time[노드]에 time2plus[노드]를 더해주기
 
 # 어려웠던 점 :
     진입차수 중에 max 값을 더해야하는 데 어떻게 max를 찾아서 더하지?
@@ -63,11 +62,11 @@ for i in range(1, n+1):
         q.append(i)
 
 # 큐 빌 때까지 돌기
-topology_res_list = []
+#topology_res_list = []
 while q:
-    print(topology_res_list)
+    #print(topology_res_list)
     now = q.pop()
-    topology_res_list.append(now)
+    #topology_res_list.append(now)
     time[now] += time2plus[now]
 
     for i in graph[now]: # i는 now노드랑 연결된 (->) 노드 들어있음
@@ -77,5 +76,5 @@ while q:
         if indegree[i] == 0:
             q.append(i)
 
-print(topology_res_list)
+#print(topology_res_list)
 print(time)
