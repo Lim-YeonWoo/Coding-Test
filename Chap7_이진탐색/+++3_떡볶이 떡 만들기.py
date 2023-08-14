@@ -20,11 +20,13 @@ p.197
     *** 어디에 이진탐색을 적용해야하는지 한번에 판단하기 어려웠다
 
     *** [이진탐색]
+        아래 내용 아님. 라이브러리 써서 되는 문제는 라이브러리쓰고 아닌 문제는 다 binary_search 코드 변형해서 푸는 것.
+        binary_search도 정확한값 말고 최대한 가까운값 등 찾는거 가능.
         1) [1 2 4 5]에서 4의 idx 찾기
         이진 탐색에서 정확하게 target값을 찾는 것 => [[binary_search 구현]]
 
         2) [1 2 4 5]에서 3이 들어갈 idx 찾기
-        이진 탐색에서 target이 들어갈 idx를 찾는 것 => [[bisect 라이브러리 이용]]
+        이진 탐색에서 target이 들어갈 idx를 찾는 것 => [[bisect 라이브러리 이용 가능]]
 
     *** [bisect 라이브러리]
         from bisect import bisect_left, bisect_right
